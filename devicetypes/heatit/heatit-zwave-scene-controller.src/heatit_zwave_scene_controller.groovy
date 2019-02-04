@@ -87,29 +87,50 @@ metadata {
 			state "default", label: 'Hold', action: "ButtonEvent(4)"
 		}
 
+		standardTile("B3", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Button 3', icon: "st.unknown.zwave.remote-controller"
+		}
+		standardTile("B3.push", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Push', action: "ButtonEvent(5)"
+		}
+		standardTile("B3.hold", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Hold', action: "ButtonEvent(6)"
+		}
+		standardTile("B4", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Button 4', icon: "st.unknown.zwave.remote-controller"
+		}
+		standardTile("B4.push", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Push', action: "ButtonEvent(7)"
+		}
+		standardTile("B4.hold", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Hold', action: "ButtonEvent(8)"
+		}
+		standardTile("B5", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Button 5', icon: "st.unknown.zwave.remote-controller"
+		}
+		standardTile("B5.push", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Push', action: "ButtonEvent(9)"
+		}
+		standardTile("B5.hold", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Hold', action: "ButtonEvent(10)"
+		}
+		standardTile("B6", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Button 6', icon: "st.unknown.zwave.remote-controller"
+		}
+		standardTile("B6.push", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Push', action: "ButtonEvent(11)"
+		}
+		standardTile("B6.hold", "device.button", width: 2, height: 2, decoration: "flat") {
+			state "default", label: 'Hold', action: "ButtonEvent(12)"
+		}
+		
 standardTile("configure", "device.configure", inactiveLabel: false, width: 1, height: 1, decoration: "flat") {
 			state "configure", label:'', action:"configuration.configure", icon:"st.secondary.configure"
 		}
 		main "button"
 		details(["button", "B1", "B1.push",  "B1.hold", "B2", "B2.push",  "B2.hold", "configure"])
 	}
-/*
-    preferences {
-       	input (
-       		name: "holdMode",
-       		type: "enum",
-			title: "Multiple \"held\" events on botton hold? With this option, the controller will send a \"held\" event about every second while holding down a button. If set to No it will send a \"held\" event a single time when the button is released.",
-			defaultValue: "2",
-            displayDuringSetup: true,
-            required: false,
-            options: [
-                   "1":"Yes",
-                   "2":"No"
-            ]
-            )
-       input name: "debug", type: "boolean", title: "Enable Debug?", defaultValue: false, displayDuringSetup: false, required: false
-    }
-*/
+
     preferences {
 
         section { // GENERAL:
@@ -132,7 +153,7 @@ standardTile("configure", "device.configure", inactiveLabel: false, width: 1, he
                     "4" : "Debug",
                     "5" : "Trace"
                 ],
-//                defaultValue: "3", // iPhone users can uncomment these lines!
+                defaultValue: "3", // iPhone users can uncomment these lines!
                 required: true
             )
 
@@ -145,7 +166,7 @@ standardTile("configure", "device.configure", inactiveLabel: false, width: 1, he
                     "1" : "Error",
                     "2" : "Warning"
                 ],
-//                defaultValue: "2", // iPhone users can uncomment these lines!
+                defaultValue: "2", // iPhone users can uncomment these lines!
                 required: true
             )
 		}
@@ -382,7 +403,7 @@ standardTile("configure", "device.configure", inactiveLabel: false, width: 1, he
 
         generatePrefsParams()
 
-        //generatePrefsAssocGroups()
+        generatePrefsAssocGroups()
 
     }
 }
@@ -681,7 +702,7 @@ private getParamsMd() {
          options: ["0" : "0: Separate mode (toggle mode). (Default)",
                    "1" : "1: In pair mode, left side sends on/up commands, right side sends off/down commands"]],
 
-        [id: 4, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 4, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #1 mode",
          description : "Configuration of the internal operation of LED #1",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -692,7 +713,7 @@ private getParamsMd() {
 		           "5" : "5: LED indicates the status of the built-in relay",
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
-        [id: 5, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 5, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #2 mode",
          description : "Configuration of the internal operation of LED #2",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -703,7 +724,7 @@ private getParamsMd() {
 		           "5" : "5: LED indicates the status of the built-in relay",
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
-        [id: 6, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 6, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #3 mode",
          description : "Configuration of the internal operation of LED #3",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -714,7 +735,7 @@ private getParamsMd() {
 		           "5" : "5: LED indicates the status of the built-in relay",
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
-        [id: 7, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 7, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #4 mode",
          description : "Configuration of the internal operation of LED #4",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -725,7 +746,7 @@ private getParamsMd() {
 		           "5" : "5: LED indicates the status of the built-in relay",
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
-        [id: 8, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 8, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #5 mode",
          description : "Configuration of the internal operation of LED #5",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -736,7 +757,7 @@ private getParamsMd() {
 		           "5" : "5: LED indicates the status of the built-in relay",
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
-        [id: 9, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 9, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "LED #6 mode",
          description : "Configuration of the internal operation of LED #6",
 		 options: ["0" : "0: LED indication is disabled (LED can be controlled by Indicator Command Class Set commands)",
@@ -748,7 +769,7 @@ private getParamsMd() {
 		           "6" : "6: LED indicates the status of the built-in relay, with inverted indication",
 		           "7" : "7: LED show a 5 seconds indication when the corresponding button is pressed"]],
 
-        [id: 10, size: 1, type: "enum", defaultValue: "0", required: false, readonly: false,
+        [id: 10, size: 1, type: "enum", defaultValue: "1", required: false, readonly: false,
          name: "Relay mode",
          description : "This parameter configures which of the buttons that shall control the built-in relay, or if the relay only will be activated for one second, each time button #1 is used.",
 		 options: ["0" : "0: Relay is disabled",
@@ -800,27 +821,59 @@ private getAssocGroupsMd() {
          description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #1 is used."],
 
 		[id:  7, maxNodes: 5, name: "Basic On/Off (B2)",
-         description : "Send Basic Report (On/Off) when button #1 is used."],
+         description : "Send Basic Report (On/Off) when button #2 is used."],
         [id:  8, maxNodes: 5, name: "Binary Switch Set On/Off (B2)",
-         description : "Sends Basic Set (On/Off) when button #1 is used."],
+         description : "Sends Basic Set (On/Off) when button #2 is used."],
         [id:  9, maxNodes: 5, name: "Binary Switch Set On/Off (B2)",
-         description : "Binary Switch Set (On/Off) when button #1 is used."],
+         description : "Binary Switch Set (On/Off) when button #2 is used."],
         [id: 10, maxNodes: 5, name: "Binary Toggle (B2)",
-         description : "Send Binary Toggle Switch Set when button #1 is used."],
+         description : "Send Binary Toggle Switch Set when button #2 is used."],
         [id: 11, maxNodes: 5, name: "Multilevel Start Stop (B2)",
-         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #1 is used."],
+         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #2 is used."],
 
 		[id: 12, maxNodes: 5, name: "Basic On/Off (B3)",
-         description : "Send Basic Report (On/Off) when button #1 is used."],
+         description : "Send Basic Report (On/Off) when button #3 is used."],
         [id: 13, maxNodes: 5, name: "Binary Switch Set On/Off (B3)",
-         description : "Sends Basic Set (On/Off) when button #1 is used."],
+         description : "Sends Basic Set (On/Off) when button #3 is used."],
         [id: 14, maxNodes: 5, name: "Binary Switch Set On/Off (B3)",
-         description : "Binary Switch Set (On/Off) when button #1 is used."],
+         description : "Binary Switch Set (On/Off) when button #3 is used."],
         [id: 15, maxNodes: 5, name: "Binary Toggle (B3)",
-         description : "Send Binary Toggle Switch Set when button #1 is used."],
+         description : "Send Binary Toggle Switch Set when button #3 is used."],
         [id: 16, maxNodes: 5, name: "Multilevel Start Stop (B3)",
-         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #1 is used."],
+         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #3 is used."],
 
+		[id: 17, maxNodes: 5, name: "Basic On/Off (B4)",
+         description : "Send Basic Report (On/Off) when button #4 is used."],
+        [id: 18, maxNodes: 5, name: "Binary Switch Set On/Off (B4)",
+         description : "Sends Basic Set (On/Off) when button #4 is used."],
+        [id: 19, maxNodes: 5, name: "Binary Switch Set On/Off (B4)",
+         description : "Binary Switch Set (On/Off) when button #4 is used."],
+        [id: 20, maxNodes: 5, name: "Binary Toggle (B4)",
+         description : "Send Binary Toggle Switch Set when button #4 is used."],
+        [id: 21, maxNodes: 5, name: "Multilevel Start Stop (B4)",
+         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #4 is used."],
 
+		[id: 22, maxNodes: 5, name: "Basic On/Off (B5)",
+         description : "Send Basic Report (On/Off) when button #5 is used."],
+        [id: 23, maxNodes: 5, name: "Binary Switch Set On/Off (B5)",
+         description : "Sends Basic Set (On/Off) when button #5 is used."],
+        [id: 24, maxNodes: 5, name: "Binary Switch Set On/Off (B5)",
+         description : "Binary Switch Set (On/Off) when button #5 is used."],
+        [id: 25, maxNodes: 5, name: "Binary Toggle (B5)",
+         description : "Send Binary Toggle Switch Set when button #5 is used."],
+        [id: 26, maxNodes: 5, name: "Multilevel Start Stop (B5)",
+         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #5 is used."],
+
+		[id: 27, maxNodes: 5, name: "Basic On/Off (B6)",
+         description : "Send Basic Report (On/Off) when button #6 is used."],
+        [id: 28, maxNodes: 5, name: "Binary Switch Set On/Off (B6)",
+         description : "Sends Basic Set (On/Off) when button #6 is used."],
+        [id: 29, maxNodes: 5, name: "Binary Switch Set On/Off (B6)",
+         description : "Binary Switch Set (On/Off) when button #6 is used."],
+        [id: 30, maxNodes: 5, name: "Binary Toggle (B6)",
+         description : "Send Binary Toggle Switch Set when button #6 is used."],
+        [id: 31, maxNodes: 5, name: "Multilevel Start Stop (B6)",
+         description : "Sends Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when button #6 is used."],
+		 
 	]
 }
